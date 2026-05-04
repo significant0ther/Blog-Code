@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIGNIFICANT OTHER</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&family=Syne+Mono&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+  background-color: #1a1a1a;
+  background-image: url('blogbackground.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #e0e0e0;
+  font-family: 'Syne Mono', monospace;
+  min-height: 100vh;
+}
+
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 30px;
+      background-color: rgba(20,20,20,0.95);
+      border-bottom: 1px solid #333;
+    }
+
+    .logo {
+      font-family: 'Libre Barcode 39 Text', cursive;
+      font-size: 4rem;
+      color: #fff;
+      letter-spacing: 2px;
+      text-decoration: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .logo span {
+      font-family: 'Syne Mono', monospace;
+      color: #c0c0c0;
+      font-size: 0.65rem;
+      display: block;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    nav a {
+      font-family: 'Syne Mono', monospace;
+      color: #aaa;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #fff; }
+
+    .main-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 100px 20px 60px;
+    }
+
+    .page-title {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 12px;
+    }
+
+    /* ---- HOMEPAGE GRID ---- */
+    .homepage-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* ---- FEATURED ARTICLE ---- */
+    .featured-article {
+  background-color: rgba(26, 26, 26, 0.92);
+  border: 1px solid #2e2e2e;
+  transition: border-color 0.2s;
+}
+    .featured-article:hover { border-color: #555; }
+
+    .featured-image {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.3s;
+    }
+    .featured-article:hover .featured-image { filter: brightness(1); }
+
+    .featured-body { padding: 24px; }
+
+    .featured-label {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e0a800;
+      margin-bottom: 8px;
+    }
+
+    .featured-date {
+      font-size: 0.65rem;
+      color: #c0c0c0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .featured-title {
+      font-family: 'Syne Mono', monospace;
+      font-size: 1.3rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .featured-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .featured-preview {
+      font-size: 0.82rem;
+      color: #999;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    /* ---- SIDE ARTICLES ---- */
+    .side-articles {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .side-article {
+      background-color: #1e1e1e;
+      border: 1px solid #2e2e2e;
+      transition: border-color 0.2s;
+    }
+    .side-article:hover { border-color: #555; }
+
+    .side-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+      transition: filter 0.3s;
+    }
+    .side-article:hover .side-image { filter: brightness(1); }
+
+    .side-body { padding: 14px; }
+
+    .side-date {
+      font-size: 0.6rem;
+      color: #c0c0c0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .side-title {
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.8rem;
+      color: #e0e0e0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .side-tags {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .side-preview {
+      font-size: 0.75rem;
+      color: #999;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .side-article.open .side-preview { display: block; }
+
+    .side-toggle {
+      font-size: 1rem;
+      color: #555;
+      transition: transform 0.3s, color 0.2s;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .side-article.open .side-toggle {
+      transform: rotate(45deg);
+      color: #aaa;
+    }
+
+    /* ---- SHARED STYLES ---- */
+    .tag {
+      font-size: 0.6rem;
+      background-color: #2a2a2a;
+      color: #888;
+      padding: 2px 7px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid #3a3a3a;
+    }
+
+    .read-more-btn {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid #555;
+      color: #ccc;
+      font-family: 'Syne Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .read-more-btn:hover { background: #333; color: #fff; }
+
+    /* ---- LAYOUT WITH SIDEBAR ---- */
+    .layout-with-sidebar {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .content-col { flex: 1; min-width: 0; }
+
+    .sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  background-color: rgba(26, 26, 26, 0.92);
+  padding: 16px;
+}
+
+    .sidebar-section { margin-bottom: 30px; }
+
+    .sidebar-title {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c0c0c0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-list { list-style: none; }
+
+    .sidebar-list li {
+      font-size: 0.72rem;
+      color: #c0c0c0;
+      padding: 3px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .sidebar-list li a {
+      color: #c0c0c0;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .sidebar-list li a:hover { color: #fff; }
+
+    .sidebar-list li span {
+      color: #555;
+      font-size: 0.62rem;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.65rem;
+      color: #444;
+      letter-spacing: 2px;
+      border-top: 1px solid #2a2a2a;
+      margin-top: 60px;
+    }
+
+    /* ---- FULL ARTICLE PAGE ---- */
+    .full-article-page {
+  display: none;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 100px 20px 50px;
+  background-color: rgba(26, 26, 26, 0.92);
+}
+    .full-article-page.active { display: block; }
+
+    .homepage.hidden { display: none; }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 30px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #777;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .back-btn:hover { color: #fff; }
+    .back-btn::before { content: '← '; }
+
+    .full-article-hero {
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 28px;
+  border: 1px solid #333;
+}
+
+    .full-article-date {
+      font-size: 0.65rem;
+      color: #c0c0c0;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .full-article-title {
+      font-family: 'Syne Mono', monospace;
+      font-size: 1.5rem;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .full-article-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .full-article-body {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #c0c0c0;
+      border-top: 1px solid #333;
+      padding-top: 28px;
+    }
+
+    .full-article-body p { margin-bottom: 18px; }
+    .full-article-body strong { color: #e0e0e0; }
+
+    .tracklist {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 18px 0;
+    }
+    .tracklist li {
+      font-size: 0.82rem;
+      color: #aaa;
+      padding: 4px 0;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .tracklist li:last-child { border-bottom: none; }
+
+    /* ---- FILTER BAR ---- */
+/* ---- FILTER BAR ---- */
+.filter-bar {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #222;
+  border: 1px solid #333;
+  margin-bottom: 16px;
+}
+.filter-bar.visible {
+  display: flex;
+}
+.filter-bar-label {
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555;
+  margin-right: 4px;
+}
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: #2a2a2a;
+  border: 1px solid #ffff00;
+  color: #ffff00;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: default;
+}
+.filter-chip-remove {
+  cursor: pointer;
+  color: #a07000;
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.filter-chip-remove:hover {
+  color: #fff;
+}
+.filter-clear-all {
+  margin-left: auto;
+  cursor: pointer;
+  color: #555;
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.filter-clear-all:hover { color: #fff; }
+
+/* Sidebar link states */
+.sidebar-list a.inactive {
+  color: #c0c0c0;
+}
+.sidebar-list a.active-filter {
+  color: #ffff00;
+}
+
+/* Hide non-matching article cards */
+.featured-article.filtered-out,
+.side-article.filtered-out {
+  display: none;
+}
+
+/* No results message */
+.no-results {
+  display: none;
+  font-size: 0.75rem;
+  color: #555;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 40px 0;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+.no-results.visible { display: block; }
+/* ---- HAMBURGER BUTTON ---- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #aaa;
+  transition: all 0.3s;
+}
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+    /* ---- TABLET (max 900px) ---- */
+    /* ---- MOBILE FILTERS (hidden by default, shown inside hamburger) ---- */
+.mobile-filters {
+  display: none;
+}
+.mobile-filter-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #2a2a2a;
+}
+.mobile-filter-title {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c0c0c0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+/* ---- COLLAPSIBLE MOBILE FILTERS ---- */
+.mobile-filter-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;        /* stops text being highlighted on tap */
+}
+.mobile-filter-title:hover {
+  color: #fff;
+}
+.mobile-filter-arrow {
+  font-size: 0.7rem;
+  color: #555;
+  transition: transform 0.25s, color 0.2s;
+  display: inline-block;
+}
+.mobile-filter-arrow.open {
+  transform: rotate(90deg);  /* arrow points down when open */
+  color: #aaa;
+}
+.mobile-filter-list {
+  display: none;             /* collapsed by default */
+  margin-top: 8px;
+}
+.mobile-filter-list.open {
+  display: block;            /* visible when open */
+}
+
+@media (max-width: 800px) {
+  .homepage-grid {
+    grid-template-columns: 1fr;
+  }
+  .layout-with-sidebar {
+    flex-direction: column;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+  nav.open {
+    display: flex;
+  }
+  nav a {
+    margin-left: 0;
+    padding: 10px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  nav a:last-child {
+    border-bottom: none;
+  }
+  .sidebar {
+    display: none;
+  }
+  .mobile-filters {
+    display: block;
+    width: 100%;
+    padding-bottom: 10px;
+  }
+}
+
+/* ---- MOBILE (max 600px) ---- */
+@media (max-width: 600px) {
+  header {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .logo {
+    font-size: 2.4rem;
+  }
+  .logo span {
+    font-size: 0.55rem;
+  }
+  .main-wrapper {
+    padding: 80px 14px 40px;
+  }
+  .featured-image {
+    height: 220px;
+  }
+  .featured-title {
+    font-size: 1.05rem;
+  }
+  .featured-body {
+    padding: 16px;
+  }
+  .side-image {
+    height: 180px;
+  }
+  .side-title {
+    font-size: 0.85rem;
+  }
+  .read-more-btn {
+    padding: 12px 20px;
+    font-size: 0.75rem;
+  }
+  .featured-tags,
+  .side-tags,
+  .full-article-tags {
+    gap: 5px;
+  }
+  .tag {
+    font-size: 0.58rem;
+    padding: 3px 8px;
+  }
+  .filter-bar {
+    padding: 10px;
+    gap: 6px;
+  }
+  .filter-chip {
+    font-size: 0.6rem;
+    padding: 4px 8px;
+  }
+  .filter-clear-all {
+    margin-left: 0;
+    margin-top: 4px;
+    width: 100%;
+    text-align: right;
+  }
+  .sidebar-list li {
+    font-size: 0.8rem;
+    padding: 6px 0;
+    border-bottom: 1px solid #222;
+  }
+  .sidebar-list li:last-child {
+    border-bottom: none;
+  }
+  .sidebar-list a {
+    padding: 4px 0;
+    display: inline-block;
+  }
+  .full-article-page {
+    padding: 80px 14px 40px;
+  }
+  .full-article-hero {
+    width: 100%;
+  }
+  .full-article-title {
+    font-size: 1.1rem;
+  }
+  .full-article-body {
+    font-size: 0.9rem;
+  }
+  .tracklist li {
+    font-size: 0.8rem;
+    padding: 6px 0;
+  }
+  footer {
+    font-size: 0.6rem;
+    padding: 20px 14px;
+    letter-spacing: 1px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <!-- HEADER -->
+<header>
+  <a class="logo" onclick="goHome()">
+    SignificantOther
+  </a>
+
+  <!-- This button only shows on mobile -->
+  <button class="nav-toggle" id="nav-toggle"
+    aria-label="Toggle navigation" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id="main-nav">
+  <a href="#" onclick="goHome(); closeNav();">Home</a>
+  <a href="#" onclick="closeNav();">About</a>
+
+  <!-- MOBILE FILTERS (only visible inside hamburger on mobile) -->
+  <div class="mobile-filters">
+
+    <div class="mobile-filter-section">
+    <div class="mobile-filter-title" onclick="toggleMobileFilter('mobile-genre')">
+      Genre
+      <span class="mobile-filter-arrow" id="arrow-mobile-genre">▸</span>
+    </div>
+    <ul class="sidebar-list mobile-filter-list" id="mobile-genre">
+      <li><a href="#" onclick="filterArticles('genre','alternative-metal'); closeNav(); return false;">Alternative Metal</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','electronic'); closeNav(); return false;">Electronic</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','emo'); closeNav(); return false;">Emo</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','industrial-rock'); closeNav(); return false;">Industrial Rock</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','nu-metal'); closeNav(); return false;">Nu Metal</a><span>(2)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','rap-metal'); closeNav(); return false;">Rap Metal</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','screamo'); closeNav(); return false;">Screamo</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','skramz'); closeNav(); return false;">Skramz</a><span>(1)</span></li>
+    </ul>
+  </div>
+
+    <div class="mobile-filter-section">
+    <div class="mobile-filter-title" onclick="toggleMobileFilter('mobile-location')">
+      Location
+      <span class="mobile-filter-arrow" id="arrow-mobile-location">▸</span>
+    </div>
+    <ul class="sidebar-list mobile-filter-list" id="mobile-location">
+      <li><a href="#" onclick="filterArticles('location','dallas'); closeNav(); return false;">Dallas</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','fort-worth'); closeNav(); return false;">Fort Worth</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','italy'); closeNav(); return false;">Italy</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','texas'); closeNav(); return false;">Texas</a><span>(2)</span></li>
+    </ul>
+  </div>
+
+    <div class="mobile-filter-section">
+    <div class="mobile-filter-title" onclick="toggleMobileFilter('mobile-artists')">
+      Artists
+      <span class="mobile-filter-arrow" id="arrow-mobile-artists">▸</span>
+    </div>
+    <ul class="sidebar-list mobile-filter-list" id="mobile-artists">
+      <li><a href="#" onclick="filterArticles('artist','dead-butterflies'); closeNav(); return false;">Dead Butterflies</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('artist','folder'); closeNav(); return false;">Folder</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('artist','toothpick'); closeNav(); return false;">Toothpick</a><span>(1)</span></li>
+    </ul>
+  </div>
+
+  </div>
+</nav>
+</header>
+
+  <!-- ==================== HOMEPAGE ==================== -->
+  <div class="main-wrapper homepage" id="homepage">
+    <div class="layout-with-sidebar">
+
+      <div class="content-col">
+
+        <div class="filter-bar" id="filter-bar">
+  <span class="filter-bar-label">Filters:</span>
+  <div id="filter-chips" style="display:contents;"></div>
+  <span class="filter-clear-all" onclick="clearAllFilters()">✕ Clear All</span>
+</div>
+
+<div class="homepage-grid">
+  <div class="no-results" id="no-results">No articles match this filter.</div>
+
+          <!-- FEATURED: TOOTHPICK (NEWEST) -->
+          <div class="featured-article"
+  data-genres="alternative-metal nu-metal industrial-rock"
+  data-locations="dallas texas"
+  data-artists="toothpick">
+            <img src="toothpick.jpg" alt="Toothpick band photo" class="featured-image"/>
+            <div class="featured-body">
+              <div class="featured-date">April 17, 2026</div>
+              <div class="featured-title">Toothpick on Their New EP, Their Future, and Video Games</div>
+              <div class="featured-tags">
+                <span class="tag">Interview</span>
+                <span class="tag">Alternative Metal</span>
+                <span class="tag">Nu Metal</span>
+                <span class="tag">Dallas</span>
+                <span class="tag">Texas</span>
+              </div>
+              <div class="featured-preview">
+                Toothpick is a relatively new-ish (if we're going off release dates) alternative metal/nu metal band from the land of Dallas, Texas. They publicly released their first single less than a year ago, and went on to release their first EP, Change is Everything, one month ago on March 20th, 2026. While the amount of content they've put out there is fairly limited, it already feels like they've begun making a proper name for themselves.              </div>
+              <span class="read-more-btn" onclick="openArticle('toothpick-interview')">Read Full Article</span>
+            </div>
+          </div>
+
+          <!-- SIDE ARTICLES -->
+          <div class="side-articles">
+
+            <!-- Dead Butterflies -->
+            <div class="side-article" id="side-1"
+  data-genres="screamo skramz electronic emo"
+  data-locations="fort-worth texas"
+  data-artists="dead-butterflies">
+              <img src="heat death of the univers dead butterflies.png" alt="Dead Butterflies album art" class="side-image"/>
+              <div class="side-body">
+                <div class="side-date">March 19, 2026</div>
+                <div class="side-title">heat death of the universe — Dead Butterflies</div>
+                <div class="side-tags">
+                  <span class="tag">Review</span>
+                  <span class="tag">Screamo</span>
+                  <span class="tag">Skramz</span>
+                  <span class="tag">Fort Worth</span>
+                </div>
+                <div class="side-preview">
+                  An article about Forth Worth band Dead Butterflies' thir album.
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                  <span class="read-more-btn" onclick="openArticle('dead-butterflies-review')">Read Full Article</span>
+                  <span class="side-toggle" onclick="toggleSide('side-1')">+</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Folder -->
+            <div class="side-article" id="side-2"
+  data-genres="nu-metal rap-metal"
+  data-locations="italy"
+  data-artists="folder">
+              <img src="keep the flow folder.png" alt="Folder Keep the Flow album art" class="side-image"/>
+              <div class="side-body">
+                <div class="side-date">March 8, 2026</div>
+                <div class="side-title">Keep the Flow — Folder</div>
+                <div class="side-tags">
+                  <span class="tag">Review</span>
+                  <span class="tag">Nu Metal</span>
+                  <span class="tag">Rap Metal</span>
+                  <span class="tag">Italy</span>
+                </div>
+                <div class="side-preview">
+                  An article about Italian band Folder's classic nu metal album.
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+                  <span class="read-more-btn" onclick="openArticle('folder-review')">Read Full Article</span>
+                  <span class="side-toggle" onclick="toggleSide('side-2')">+</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-section">
+  <div class="sidebar-title">Genre</div>
+  <ul class="sidebar-list">
+    <li><a href="#" onclick="filterArticles('genre','alternative-metal'); return false;">Alternative Metal</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','electronic'); return false;">Electronic</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','emo'); return false;">Emo</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','industrial-rock'); return false;">Industrial Rock</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','nu-metal'); return false;">Nu Metal</a><span>(2)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','rap-metal'); return false;">Rap Metal</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','screamo'); return false;">Screamo</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('genre','skramz'); return false;">Skramz</a><span>(1)</span></li>
+  </ul>
+</div>
+        <div class="sidebar-section">
+  <div class="sidebar-title">Location</div>
+  <ul class="sidebar-list">
+    <li><a href="#" onclick="filterArticles('location','dallas'); return false;">Dallas</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('location','fort-worth'); return false;">Fort Worth</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('location','italy'); return false;">Italy</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('location','texas'); return false;">Texas</a><span>(2)</span></li>
+  </ul>
+</div>
+        <div class="sidebar-section">
+  <div class="sidebar-title">Artists</div>
+  <ul class="sidebar-list">
+    <li><a href="#" onclick="filterArticles('artist','dead-butterflies'); return false;">Dead Butterflies</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('artist','folder'); return false;">Folder</a><span>(1)</span></li>
+    <li><a href="#" onclick="filterArticles('artist','toothpick'); return false;">Toothpick</a><span>(1)</span></li>
+  </ul>
+</div>
+      </div>
+
+    </div>
+    <footer>© 2026 Significant Other &nbsp;·&nbsp; Texas Music Blog</footer>
+  </div>
+    <!-- ==================== FULL ARTICLE: TOOTHPICK ==================== -->
+  <div class="full-article-page" id="page-toothpick-interview">
+    <span class="back-btn" onclick="goHome()">Back to all articles</span>
+    <img src="toothpick.jpg" alt="Toothpick band photo" class="full-article-hero"/>
+    <div class="full-article-date">April 17, 2026</div>
+    <h1 class="full-article-title">Toothpick on Their New EP, Their Future, and Video Games</h1>
+    <div class="full-article-tags">
+      <span class="tag">Interview</span>
+      <span class="tag">Alternative Metal</span>
+      <span class="tag">Nu Metal</span>
+      <span class="tag">Industrial Rock</span>
+      <span class="tag">Dallas</span>
+      <span class="tag">Texas</span>
+    </div>
+    <div class="full-article-body">
+
+      <p>Toothpick is a relatively new-ish (if we're going off release dates) alternative metal/nu metal band from the land of Dallas, Texas. They publicly released their first single less than a year ago, and went on to release their first EP, <em>Change is Everything</em>, one month ago on March 20th, 2026. While the amount of content they've put out there is fairly limited, it already feels like they've begun making a proper name for themselves.</p>
+
+      <p>After listening to <em>Change is Everything</em>, it was really easy for me to see — or hear — just how authentic and differentiated they are. From the lyrics, to the vocals, tone, mixing, to basically everything, this EP definitely scratched an itch in my brain for a breed of music I didn't really even know that I had. Of course I could write about it, but I figured, "Why not just see if I can actually talk to them about it?" Luckily enough for me, they are some really cool people who were kind enough to lend me some of their time. And after talking to them, I must say that I am extremely excited to see how this band evolves and where their music takes them. Without further ado:</p>
+
+      <p><strong>Hi there, this is Brandon interviewing Dallas band Toothpick. If y'all could give us your names and roles in the band, please?</strong></p>
+      <p>
+        <strong>Jack:</strong> I'm Jack. I play drums.<br/>
+        <strong>Chaz:</strong> My name's Chaz, I play bass.<br/>
+        <strong>Collin:</strong> My name is Collin. I play guitar.<br/>
+        <strong>Cleo:</strong> I'm Cleo. I play guitar, I sing, and I program.
+      </p>
+
+      <p><strong>How have y'all been going? Your EP, Change is Everything, just came out a few weeks ago, so how does it feel to finally have that project out for everyone in the world to hear?</strong></p>
+      <p>
+        <strong>Cleo:</strong> It's like a fucking huge weight off my shoulders, dude.<br/>
+        <strong>Collin:</strong> Great hearing all the great feedback we've been having.<br/>
+        <strong>Chaz:</strong> I'm glad it's out and we can move on.
+      </p>
+
+      <p><strong>Do you guys have a specific favorite song from the EP?</strong></p>
+      <p>
+        <strong>Cleo:</strong> That's like choosing our favorite kid, man. We sat with this EP for, like, a year, so it's kind of hard, but I will say my favorite song to play live is Suppressor. It's just super buttery smooth.<br/>
+        <strong>Jack:</strong> I think my favorite to play live is Ashdown.<br/>
+        <strong>Collin:</strong> Undoubtedly mine is Ashdown. It's a beautiful song.<br/>
+        <strong>Chaz:</strong> I think my favorite track off the EP is Ashdown, but if I had to pick my favorite one of those songs to play live, probably Pulgasari.
+      </p>
+
+      <p>I think that one might be my top track from the EP. But it seems like Ashdown is the favorite kid.</p>
+      <p><strong>Cleo:</strong> Yeah, Ashdown is crazy. I wrote the song and I fully expected people, like when the EP came out, to be like, "Ok there's three awesome nu metal songs, and then Ashdown" right? But it seems like from all the response we've got it seems like Ashdown is the song that people are, like, connected with the most. Outside of Aluminum.</p>
+
+      <p><strong>I know you said it's like a weight off your shoulders since you've been sitting on it for a year now, but what was the journey like putting it together? From writing the songs, finalizing the songs, recording them, and just getting the whole thing released finally?</strong></p>
+      <p>
+        <strong>Chaz:</strong> Well Cleo wrote the songs, and the recording was mainly Cleo and I in the studio. The two of us and our producer, Evan Bostelmann. It certainly went in its own direction when we were in the studio. Not that it's a bad thing, it's just it took itself on differently.<br/>
+        <strong>Cleo:</strong> Yeah, we came in with this mentality of how it's gonna sound in our heads. And getting to where we wanted it was a lot more of a tedious process than we thought it was going to be. So, it came out different, but I think it honestly came out with a better product than what we were expecting. It was a long, arduous march to the end, but I think it came out with a much better product than what I expected.
+      </p>
+
+      <p><strong>Jack, when did you join the project? If I remember correctly I read that the Bleed and Narrow Head drummer recorded the drums for the EP?</strong></p>
+      <p><strong>Jack:</strong> Yeah, so he did that before I joined, and all the drums were recorded and done before I really joined and it was just a journey of being, like, "All right, now I gotta learn how to do this shit." And you get to a point where we're gonna be able to play it live, but it's a lot of fun for me because I took balance learning between what Carson played and also what Cleo had originally programmed, so what I play live is usually a bit different than it is on the album, so I really enjoy that, personally.</p>
+
+      <p><strong>Cleo, I also read that the origins of Toothpick stem from when you first wrote Aluminum while working with Bleed on their album. How did that experience push for the formation of Toothpick?</strong></p>
+      <p><strong>Cleo:</strong> When Toothpick started, Aluminum was really the first Toothpick song that was written. I was working with the Bleed guys on the song that would turn into Through the Cylinder, and everybody knows that record had taken, like, fucking five years to produce. In between that I wrote a couple different parts for that record and one time I was just like, "These guys aren't fucking gonna do anything at this rate, I might as well write my own song." So I wrote basically what I jokingly refer to as a parody Bleed song. Not to downplay Aluminum, because Aluminum is also a very, very important song for me in my musical history. I put the break at the start, and that was originally supposed to be Through the Cylinder. That's where that came from.</p>
+
+      <p>Yeah, I remember that long Bleed wait very well.<br/>
+      <strong>Cleo:</strong> I remember it extremely well. I remember being frustrated. I was like "What are you guys doing?"</p>
+
+      <p><strong>So when did Chaz and Collin come in?</strong></p>
+      <p><strong>Cleo:</strong> Me and Chaz started the band from the ruins of an indie rock band that we had. We formed the band and we got Carson to do the EP — it's funny, Jack was originally supposed to be on the EP as a session drummer but there was a schedule conflict. I ended up drinking with Carson one night and I mentioned that, and Carson looked at me and he was like, "Bro I'll do it," and I was like, "WHAT. You're fucking with me." Then I went back around to Jack and was like, "Hey, you wanna play for Toothpick?" and he was like "Yeah, of course." And Collin came pretty much immediately after that. Then the lineup really solidified at that point.</p>
+      <p>
+        <strong>Collin:</strong> I think our first show was at The Nines.<br/>
+        <strong>Cleo:</strong> Yeah, that was our first show at home base at The Nines. We practiced for like 2 months.<br/>
+        <strong>Collin:</strong> It was pretty short. It went pretty quickly.
+      </p>
+
+      <p><strong>By the time you had your first show did you already have the four songs off the EP done?</strong></p>
+      <p><strong>Cleo:</strong> Oh yeah, definitely. We had them all written. Most of our set, including stuff that we haven't released, has all been written and demoed out. It's just like going to the studio, getting the money to go to the studio, working out all the stuff is just a long, arduous process. Songs that we wrote 2 years ago won't come out until 2 years after we wrote them. So yeah, this is all to say there's plenty of Toothpick material, we're just waiting to put it out.</p>
+
+      <p><strong>I know that a little while ago you would've called yourself a more "straightforward rock band" but that you've been experimenting with synths and other effects. What is that branching out going to sound like going forward?</strong></p>
+      <p><strong>Cleo:</strong> A lot of synths, a lot of 90s… we're trying very hard to have electronics and synthesizers in our band without sounding like we're going out on stage in leather and latex. Most of our repertoire electronic wise is 90s breakbeat, a lot of digital hardcore, old 90s hardcore. We don't want to sound like Femtanyl. It's a lot of trance synths, supersize acid synths — stuff that doesn't get touched on a lot by rock musicians. Let's do stuff people normally don't do as rock guys.</p>
+
+      <p><strong>What electronic groups do you guys listen to?</strong></p>
+      <p>
+        <strong>Cleo:</strong> My repertoire is a lot of old digital hardcore recordings like Christoph de Babalon, Atari Teenage Riot, Bomb20. I also love The Prodigy. I really like Surgeon — very Splinter Cell music. It's usually 90s stuff.<br/>
+        <strong>Chaz:</strong> A few big ones: Cold Cave is up there. Gary Numan, shout out Gary Numan. Chemlab's a big one. And Thom Yorke's solo electronic stuff.<br/>
+        <strong>Jack:</strong> I probably listen to the least electronic music out of anyone here. Mostly stuff like Food House — hyperpop stuff. Really fast and hyper.<br/>
+        <strong>Collin:</strong> Kill Alters is a newer band I like a lot. LCD Soundsystem. The Mad Capsule Markets. Bowery Electric. Model/Actriz.<br/>
+        <strong>Chaz:</strong> Tuco put me on Bowery Electric. Shoutout Tuco.<br/>
+        <strong>Cleo:</strong> Shoutout Tuco.
+      </p>
+
+      <p><strong>The DFW area has an incredibly rich scene. How did your experiences with that surrounding scene influence you?</strong></p>
+      <p>
+        <strong>Jack:</strong> Growing up, one thing that's always been really prevalent in Dallas is the shoegaze scene. There's also a huge metalcore and hardcore scene here. You see all these amazing bands and they're really good so you're like, alright, that's where the bar is.<br/>
+        <strong>Cleo:</strong> We try to keep at arm's length from listening too much into whatever is happening with other local bands because I start getting distracted from the process of writing the best possible song we can write.<br/>
+        <strong>Chaz:</strong> Growing up in the music scene in Dallas, it used to be terrible. The early 2010s there was nothing. I think the late 2010s and 2020 is when it really started picking up.<br/>
+        <strong>Collin:</strong> Especially in places like Fort Worth with like Trauma Ray.<br/>
+        <strong>Cleo:</strong> Fort Worth's firing on all cylinders and I think Toothpick's goal is to fire on all cylinders in Dallas and tip the scales a little.
+      </p>
+
+      <p><strong>As musicians who make music to be heard by other people, do you ever deal with anxiety about what you're writing or the feeling that something isn't good enough?</strong></p>
+      <p>
+        <strong>Cleo:</strong> Oh, 100%. Every song I write I feel like it's probably gonna suck. I would go through revision after revision. We will literally take a song that's already completed, strip it for parts, and stitch new songs back together from a bunch of different parts just to make the best possible thing.<br/>
+        <strong>Collin:</strong> Ignore it.<br/>
+        <strong>Chaz:</strong> I've learned to know when to walk away from something and when to come back. Every song, no matter how shitty it is, has one great idea in it. Sometimes you just gotta walk away and come back to it a couple months later.<br/>
+        <strong>Cleo:</strong> We will come up with tiny little parts and iterate on those parts. Just iterating and iterating, really trying to make the best possible product we can generate.
+      </p>
+
+      <p><strong>Are there any bands you guys want to shout out?</strong></p>
+      <p>
+        <strong>Collin:</strong> Heavytrip, Mutt are undoubtedly two. Tealsky. Spurred — they're also out of Fort Worth.<br/>
+        <strong>Cleo:</strong> Mass Appeal is great. Scourge is fantastic. Cynical. Obviously Bleed and Narrow Head. Ritual is badass. Nuclear Daisies of course, they're the goats.<br/>
+        <strong>Chaz:</strong> There's this band from Dallas called True Widow. Their members just released a new single in a new band called Bad Stuff.<br/>
+        <strong>Jack:</strong> Shoutout Somebody Else, I really fuck with those guys.<br/>
+        <strong>Cleo:</strong> Gene Ross is really good, and Somebody Else. They all share members and Jack is in Gene Ross.
+      </p>
+
+      <p><strong>What are your favorite video games?</strong></p>
+      <p>
+        <strong>Chaz:</strong> I'm a huge Pokémon fan — HeartGold and SoulSilver. My favorite Pokémon game is either Platinum or Crystal, and if you don't like those answers then I'm going with Fallout: New Vegas.<br/>
+        <strong>Cleo:</strong> I'm a Source engine aficionado. My favorite game of all time is Team Fortress 2. One of my other favorites is the original F.E.A.R. I've also been playing a lot of Helldivers 2. And Mirror's Edge for the Xbox 360 — I take a lot of inspiration for Toothpick aesthetics from that game.<br/>
+        <strong>Collin:</strong> Undoubtedly the Souls games, and Valve games. I've played a lot of Half-Life on my dad's computer. I'm playing Deadlock right now and a lot of Escape from Tarkov.<br/>
+        <strong>Jack:</strong> Mordhau is my first — it's like CoD except you're knights. Then probably the first Kingdom Come. And Fable III. Growing up, oh my God I love that game.
+      </p>
+
+      <p><strong>Last question — what is the best live show you have ever been an audience member at?</strong></p>
+      <p>
+        <strong>Chaz:</strong> 2023, I went to Oklahoma City to see Viagra Boys open for Queens of the Stone Age. I got front row, I got to meet Sebastian Murphy after the show. He's a great dude. There was also an opener, Jehnny Beth — she was trying to get me to hold her up on the guardrails but I couldn't hear her because I have hearing loss and had earplugs in. The guy next to me had to hold her up. It was an awesome show.<br/>
+        <strong>Jack:</strong> One of my most memorable was seeing Amon Amarth, Lamb of God, and Slayer on their second final tour. I was like 13 or 14, and just being in a pit for Slayer while it was raining and muddy — it was something where I was like, "Ok, this shit is actually really cool."<br/>
+        <strong>Cleo:</strong> I got to see Nine Inch Nails for the first time. Nine Inch Nails is my favorite band of all time and has informed my entire musical career. The light show was incredible, the whole stage production was fantastic. They played all the hits. Trent — still at sixty-something years old — still sounds amazing. It was truly life affirming.<br/>
+        <strong>Collin:</strong> A memorable one for me was Poison The Well and Glassjaw. I love Poison The Well, so to actually see them play was pretty cool.<br/>
+        <strong>Cleo:</strong> Glassjaw was badass. That probably would've been my second or third if not for Nine Inch Nails.<br/>
+        <strong>Collin:</strong> Also Death Grips. The mosh pit there was awful — shirtless dudes falling on you, sweat imprints. But getting to see Zach Hill and MC Ride was kind of surreal. There's such an internet culture with them and I've only ever seen them online, so being able to actually see them was pretty surreal.
+      </p>
+
+      <p><strong>Well those were all the questions I had for you guys. Is there anything else you want to share or mention?</strong></p>
+      <p>
+        <strong>Cleo:</strong> You fuck with Chevelle?<br/>
+        Me? Yeah.<br/>
+        <strong>Cleo:</strong> You're gonna like what we got coming up next. You're gonna like our next studio project.
+      </p>
+
+      <p>Check out Toothpick's <a href="https://toothpick.bandcamp.com" style="color:#aaa;">Bandcamp</a>.</p>
+    </div>
+  </div>
+    <!-- ==================== FULL ARTICLE: DEAD BUTTERFLIES ==================== -->
+  <div class="full-article-page" id="page-dead-butterflies-review">
+    <span class="back-btn" onclick="goHome()">Back to all articles</span>
+    <img src="heat death of the univers dead butterflies.png" alt="Dead Butterflies album art" class="full-article-hero"/>
+    <div class="full-article-date">March 19, 2026</div>
+    <h1 class="full-article-title">heat death of the universe — Dead Butterflies</h1>
+    <div class="full-article-tags">
+      <span class="tag">Review</span>
+      <span class="tag">Screamo</span>
+      <span class="tag">Skramz</span>
+      <span class="tag">Electronic</span>
+      <span class="tag">Emo</span>
+      <span class="tag">Fort Worth</span>
+      <span class="tag">Texas</span>
+    </div>
+    <div class="full-article-body">
+
+      <p><em>"(Scattered on your arms!) / I saw the twinkle in your eyes fade / (Stay on the phone!) / We held hands in the summer twilight / (Scattered on your arms!) / We hold a blanket of blades"</em> — checkered arms</p>
+
+      <p>Second post let's go. I had many ideas for what my second post should be about, but this album slipped through my headphones and into my ears at the last second and I knew that I had to talk about it.</p>
+
+      <p><em>heat death of the universe</em> is the third full length album from Fort Worth skramz and screamo band Dead Butterflies. I think that this band can also be labeled something like "electronic screamo" due to the awesome electronic elements incorporated into most of their songs. Whenever I try to talk about Dead Butterflies or this album I always try to explain it like "if a Sonic the Hedgehog OST had a baby with a screamo band." I also saw a Bandcamp comment that said it had "Undertale skramz vibes" so I think my analysis checks out. I'm not really well versed in the technical aspects of electronic music production — or even music production in general — to really go into more depth on that front. They're also the only skramz band I know whipping out trumpets during their shows, but maybe I'm also not well versed in the skramz trumpet scene.</p>
+
+      <p>Speaking of Dead Butterflies live shows, I got the chance to see them for the first time in Houston opening for Catalyst and sharing the stage with Salvinorin-A, Empty Shell Casing, Blister, and Lagrimas. These bands are all extremely worthy of their own posts but let's stay on topic. Anyways, Dead Butterflies' set had to be one of the most beautiful sets I've seen in my life. Usually these shows are full of people going crazy, bouncing off the walls, and stagediving on top of you, and this set was no different. However, there was just something different about it. This one just seemed to radiate bliss and pure fun and infected everyone in the venue with it. The band was in great spirits moving around and having fun with the crowd and the crowd was super engaged and stagediving every which way. Meanwhile, the people toward the back were just dancing blissfully to the super energetic electronic skramz being played. It was really the most joyful set I've been an audience member in. It's kind of hard to describe it, but it's true.</p>
+
+      <p>All of that was an extremely long winded way to start talking about the actual album, which is the point of this whole post. Like I said, this is the third Dead Butterflies album, preceded by <em>Ramona, The Hurt</em> and <em>I See Myself In You, I Hate It</em>. I very nearly wrote this post about <em>Ramona, The Hurt</em> which nearly made me cry but I won't keep getting off topic. But if <em>Ramona, The Hurt's</em> electronic elements were at around a 5 or 6, then <em>heat death of the universe</em> cranks that up to around an 8 or 9. It meshes so well with the other instruments to completely amplify the vibe and effect each song has on you.</p>
+
+      <p>Speaking of which, I can't think of an album in recent memory that just completely throws you back and forth on the emotional spectrum like this one does. There are songs like "starfall on our lonely planet", "exploding heart syndrome", and "midnight" that are just unfettered electric energy that will make you bounce off the walls, while songs like "heat death of the universe", "checkered arms", and "in my bones" are much more sorrowful and sincere, their emotional effect amplified by the massive enveloping soundscapes. Literally just imagine the Family Guy bit where Peter is crying in his car to one song then immediately happy and dancing to the next. But seriously, the more solemn songs — along with the rest of the album, of course — are so insanely beautiful and massive, with "in my bones" being the explosive emotional finale to the entire album.</p>
+
+      <p>This album succeeds in bringing together so many things in a phenomenal way. It is fun, energetic, emotional, sad, and made by a band who seems like they are genuinely trying to make beautiful, expressive art. If you want to go crazy and dance or if you want to lay in a fetal position, this album has it all. I am very proud of Texas music. Beautiful beautiful band and album.</p>
+
+      <p><strong>Tracklist:</strong></p>
+      <ul class="tracklist">
+        <li>1. ramona's theme</li>
+        <li>2. butterfly eyes</li>
+        <li>3. beneath the surface</li>
+        <li>4. midnight</li>
+        <li>5. heat death of the universe</li>
+        <li>6. starfall on our lonely planet</li>
+        <li>7. exploding heart syndrome</li>
+        <li>8. checkered arms</li>
+        <li>9. in my bones</li>
+      </ul>
+
+    </div>
+  </div>
+
+
+  <!-- ==================== FULL ARTICLE: FOLDER ==================== -->
+  <div class="full-article-page" id="page-folder-review">
+    <span class="back-btn" onclick="goHome()">Back to all articles</span>
+    <img src="keep the flow folder.png" alt="Folder Keep the Flow album art" class="full-article-hero"/>
+    <div class="full-article-date">March 8, 2026</div>
+    <h1 class="full-article-title">Keep the Flow — Folder</h1>
+    <div class="full-article-tags">
+      <span class="tag">Review</span>
+      <span class="tag">Nu Metal</span>
+      <span class="tag">Rap Metal</span>
+      <span class="tag">Italy</span>
+    </div>
+    <div class="full-article-body">
+
+      <p><em>"I can't feel with all my obsession / 'Cause I can't do it with all my perseveration / But I can do it, and do it again / 'Cause I'm sexy but not the sexiest"</em> — Cut the Belt</p>
+
+      <p>Ok so I've decided that my very first blog post ever will be about the 2001 album <em>Keep the Flow</em> by Folder. I realize that it's kind of a strange pick to kick off the blog since I wanted to try to keep the blog focused on cool newer artists, but I've just been listening to this album a lot lately. Therefore, I want to write about it.</p>
+
+      <p>First of all, I feel like it should be stated that this band is indeed Italian. Despite listening to this album for a while I had literally no knowledge of this until I decided to do a little bit of research for this blog post. As a Texan, I can't really recall any other time I've heard about an Italian nu metal band. In hindsight though that does kind of make sense and would explain the unique pronunciation of some of the lyrics — it was an Italian accent all along.</p>
+
+      <p>I'm not really exactly sure how well known this band is, but I think that they're pretty popular in the nu metal community. Personally, I've only ever seen other people talk about them a couple of times in obscurity on the internet. Without thinking too hard about the other classic nu metal albums out there — like any early Limp Bizkit album — I would say that this is one of the wackiest I've heard in the best way possible. In other words, this album is one of the most fun that you can find within the nu metal genre.</p>
+
+      <p>The riffs are incredibly fun and are at times very effects heavy while having the kind of energetic properties that make any listener want to bounce off the walls, whereas most nu metal would make you want to break stuff (EBK: elite ball knowledge). This combined with the DJing and record scratches transform the album into pure energy. Now, I'm pretty sure the lyrics were written in Italian and then translated to English, so they may sound off to some and may not entirely be grammatically correct. However, I think this only adds to the album's strengths. The pronunciation and vocalist's overall sound only help give the vocals a unique sound that stands out from other bands. This element specifically is what I think gives the album its wacky nature and only makes it more entertaining to listen to.</p>
+
+      <p>As for the actual tracks, there are a staggering 14 of them. My personal top tracks at the moment are "Left", "Closer", and "Divine Stitches." I personally think "Left" is the perfect representation of how wacky this album can get in the best way. However, none of these are my actual favorite. That spot would be reserved for the classic "Cut the Belt." This song is incredibly awesome and does everything right, building up right at the beginning into a drop of loud drums, record scratches, vocal chops, and a hard, bouncy riff. From there, all instruments drop out except for the low vocals and scratchy guitar, only to build up again with a really funky pre-chorus that primes you for the chaotic chorus. Repeat everything, and that's basically "Cut the Belt", the highlight of this album (at least in my opinion).</p>
+
+      <p>I wouldn't really say this album is for everyone, and perhaps not even for every nu metal fan as it is a tad unconventional. But for me, this album is one that I think should help represent the rest of the genre — at least in some ways — because I just think that it really encapsulates how goofy, fun, and entertaining the genre can be. It basically just sounds like some punks just got in a studio and had some great fun with it. I hope hypothetically that if anyone in the band read this they would take all that as a compliment, because who knows if that's what they were going for.</p>
+
+      <p><strong>Tracklist:</strong></p>
+      <ul class="tracklist">
+        <li>1. Intro</li>
+        <li>2. Welcome All but You</li>
+        <li>3. Cut the Belt</li>
+        <li>4. W.I.K</li>
+        <li>5. Drastic</li>
+        <li>6. Left</li>
+        <li>7. Once Again</li>
+        <li>8. Normality</li>
+        <li>9. Kick the Bucket</li>
+        <li>10. It's Tricky</li>
+        <li>11. Closer</li>
+        <li>12. Fingerprint</li>
+        <li>13. Connected (Bang!)</li>
+        <li>14. Divine Stitches</li>
+      </ul>
+
+    </div>
+  </div>
+
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    
+    // ---- MOBILE FILTER COLLAPSE ----
+function toggleMobileFilter(id) {
+  var list = document.getElementById(id);
+  var arrow = document.getElementById('arrow-' + id);
+
+  list.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+  // ---- MOBILE NAV TOGGLE ----
+  function toggleNav() {
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('main-nav');
+    toggle.classList.toggle('open');
+    nav.classList.toggle('open');
+  }
+
+  function closeNav() {
+    document.getElementById('nav-toggle').classList.remove('open');
+    document.getElementById('main-nav').classList.remove('open');
+  }
+
+  // ---- SIDE TOGGLE ----
+  function toggleSide(id) {
+    var item = document.getElementById(id);
+    item.classList.toggle('open');
+  }
+
+  // ---- ARTICLE NAVIGATION ----
+  function openArticle(slug) {
+    document.getElementById('homepage').classList.add('hidden');
+    document.querySelectorAll('.full-article-page').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    var page = document.getElementById('page-' + slug);
+    if (page) page.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function goHome() {
+    document.getElementById('homepage').classList.remove('hidden');
+    document.querySelectorAll('.full-article-page').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    window.scrollTo(0, 0);
+  }
+
+  // ---- FILTERING ----
+
+  // activeFilters holds the current selections split by category
+  // e.g. { genre: ['nu-metal', 'screamo'], location: ['texas'], artist: [] }
+  var activeFilters = {
+    genre: [],
+    location: [],
+    artist: []
+  };
+
+  // Human-readable display names for each filter value
+  var filterLabels = {
+    'alternative-metal': 'Alternative Metal',
+    'electronic':        'Electronic',
+    'emo':               'Emo',
+    'industrial-rock':   'Industrial Rock',
+    'nu-metal':          'Nu Metal',
+    'rap-metal':         'Rap Metal',
+    'screamo':           'Screamo',
+    'skramz':            'Skramz',
+    'dallas':            'Dallas',
+    'fort-worth':        'Fort Worth',
+    'italy':             'Italy',
+    'texas':             'Texas',
+    'dead-butterflies':  'Dead Butterflies',
+    'folder':            'Folder',
+    'toothpick':         'Toothpick'
+  };
+
+  // Map filter category names to the data attributes on the cards
+  var attrMap = {
+    genre:    'data-genres',
+    location: 'data-locations',
+    artist:   'data-artists'
+  };
+
+  function filterArticles(type, value) {
+    var list = activeFilters[type];
+    var index = list.indexOf(value);
+
+    // If already active, remove it — otherwise add it
+    if (index !== -1) {
+      list.splice(index, 1);
+    } else {
+      list.push(value);
+    }
+
+    applyFilters();
+  }
+
+  function removeFilter(type, value) {
+    var list = activeFilters[type];
+    var index = list.indexOf(value);
+    if (index !== -1) {
+      list.splice(index, 1);
+    }
+    applyFilters();
+  }
+
+  function clearAllFilters() {
+    activeFilters = { genre: [], location: [], artist: [] };
+    applyFilters();
+  }
+
+  function applyFilters() {
+    var hasAnyFilter =
+      activeFilters.genre.length > 0 ||
+      activeFilters.location.length > 0 ||
+      activeFilters.artist.length > 0;
+
+    // Show or hide each article card
+    var allCards = document.querySelectorAll('.featured-article, .side-article');
+    var visibleCount = 0;
+
+    allCards.forEach(function(card) {
+      var matches = true;
+
+      // For each category that has active filters, the card must match
+      // at least one value in that category
+      ['genre', 'location', 'artist'].forEach(function(type) {
+        if (activeFilters[type].length === 0) return; // skip empty categories
+
+        var attr = attrMap[type];
+        var cardValues = (card.getAttribute(attr) || '').split(' ');
+
+        // Check if any of the active filters for this type match the card
+        var categoryMatch = activeFilters[type].some(function(filterValue) {
+          return cardValues.indexOf(filterValue) !== -1;
+        });
+
+        if (!categoryMatch) matches = false;
+      });
+
+      if (matches) {
+        card.classList.remove('filtered-out');
+        visibleCount++;
+      } else {
+        card.classList.add('filtered-out');
+      }
+    });
+
+    // Show or hide the no-results message
+    document.getElementById('no-results').classList.toggle(
+      'visible',
+      hasAnyFilter && visibleCount === 0
+    );
+
+    // Show or hide the filter bar
+    var bar = document.getElementById('filter-bar');
+    if (hasAnyFilter) {
+      bar.classList.add('visible');
+    } else {
+      bar.classList.remove('visible');
+    }
+
+    // Rebuild the filter chips inside the bar
+    renderChips();
+
+    // Update sidebar link highlight states
+    updateSidebarStates();
+
+    // Adjust grid layout if featured article is hidden
+    updateGridLayout();
+  }
+
+  function renderChips() {
+    var container = document.getElementById('filter-chips');
+    container.innerHTML = '';
+
+    ['genre', 'location', 'artist'].forEach(function(type) {
+      activeFilters[type].forEach(function(value) {
+        var chip = document.createElement('span');
+        chip.className = 'filter-chip';
+
+        var label = filterLabels[value] || value.replace(/-/g, ' ');
+        var categoryPrefix = type.charAt(0).toUpperCase() + type.slice(1);
+
+        chip.innerHTML =
+          '<span>' + categoryPrefix + ': ' + label + '</span>' +
+          '<span class="filter-chip-remove" onclick="removeFilter(\'' + type + '\',\'' + value + '\')">✕</span>';
+
+        container.appendChild(chip);
+      });
+    });
+  }
+
+  function updateSidebarStates() {
+  var hasAnyFilter =
+    activeFilters.genre.length > 0 ||
+    activeFilters.location.length > 0 ||
+    activeFilters.artist.length > 0;
+
+  document.querySelectorAll('nav .sidebar-list a, .sidebar .sidebar-list a').forEach(function(link) {
+      link.classList.remove('active-filter', 'inactive');
+
+      if (!hasAnyFilter) return; // reset to normal if no filters active
+
+      var onclick = link.getAttribute('onclick') || '';
+
+      // Extract the type and value from the onclick attribute string
+      var match = onclick.match(/filterArticles\('([^']+)','([^']+)'\)/);
+      if (!match) return;
+
+      var linkType  = match[1];
+      var linkValue = match[2];
+
+      if (activeFilters[linkType] && activeFilters[linkType].indexOf(linkValue) !== -1) {
+        link.classList.add('active-filter');
+      } else {
+        link.classList.add('inactive');
+      }
+    });
+  }
+
+  function updateGridLayout() {
+    var featured = document.querySelector('.featured-article');
+    var grid = document.querySelector('.homepage-grid');
+    if (featured && featured.classList.contains('filtered-out')) {
+      grid.style.gridTemplateColumns = '1fr';
+    } else {
+      grid.style.gridTemplateColumns = '';
+    }
+  }
+</script>
+
+</body>
+</html>
