@@ -11,14 +11,22 @@
 
     body {
   background-color: #1a1a1a;
-  background-image: url('blogbackground.png');
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   color: #e0e0e0;
   font-family: 'Syne Mono', monospace;
   min-height: 100vh;
+}
+  body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('blogbackground.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
     header {
@@ -85,11 +93,11 @@
 
     /* ---- HOMEPAGE GRID ---- */
     .homepage-grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 20px;
-      align-items: start;
-    }
+  display: grid;
+  grid-template-columns: minmax(450px, 1fr) minmax(180px, 320px);
+  gap: 20px;
+  align-items: start;
+}
 
     /* ---- FEATURED ARTICLE ---- */
     .featured-article {
@@ -555,7 +563,23 @@
   display: block;            /* visible when open */
 }
 
-@media (max-width: 800px) {
+@media (max-width: 886px) {
+  header {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* your existing 700px styles below... */
+  .homepage-grid {
+    grid-template-columns: 1fr;
+  }
+  .layout-with-sidebar {
+    flex-direction: column;
+  }
+  .nav-toggle {
+    display: flex;
+  }
   .homepage-grid {
     grid-template-columns: 1fr;
   }
@@ -599,11 +623,6 @@
 
 /* ---- MOBILE (max 600px) ---- */
 @media (max-width: 600px) {
-  header {
-    padding: 10px 16px;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
   .logo {
     font-size: 2.4rem;
   }
