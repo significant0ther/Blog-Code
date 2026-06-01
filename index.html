@@ -910,38 +910,42 @@
       </div>
 
       <!-- SIDEBAR -->
-      <div class="sidebar">
-        <div class="sidebar-section">
-  <div class="sidebar-title">Genre</div>
-  <ul class="sidebar-list">
-    <li><a href="#" onclick="filterArticles('genre','alternative-metal'); return false;">Alternative Metal</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','electronic'); return false;">Electronic</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','emo'); return false;">Emo</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','industrial-rock'); return false;">Industrial Rock</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','nu-metal'); return false;">Nu Metal</a><span>(2)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','rap-metal'); return false;">Rap Metal</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','screamo'); return false;">Screamo</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('genre','skramz'); return false;">Skramz</a><span>(1)</span></li>
-  </ul>
+<div class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Genre</div>
+    <ul class="sidebar-list">
+      <li><a href="#" onclick="filterArticles('genre','alternative-metal'); return false;">Alternative Metal</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','electronic'); return false;">Electronic</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','emo'); return false;">Emo</a><span>(2)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','industrial-rock'); return false;">Industrial Rock</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','metalcore'); return false;">Metalcore</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','nu-metal'); return false;">Nu Metal</a><span>(2)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','post-hardcore'); return false;">Post-Hardcore</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','rap-metal'); return false;">Rap Metal</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','screamo'); return false;">Screamo</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','skramz'); return false;">Skramz</a><span>(1)</span></li>
+    </ul>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Location</div>
+    <ul class="sidebar-list">
+      <li><a href="#" onclick="filterArticles('location','dallas'); return false;">Dallas</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','fort-worth'); return false;">Fort Worth</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','houston'); return false;">Houston</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','italy'); return false;">Italy</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','texas'); return false;">Texas</a><span>(3)</span></li>
+    </ul>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">Artists</div>
+    <ul class="sidebar-list">
+      <li><a href="#" onclick="filterArticles('artist','dead-butterflies'); return false;">Dead Butterflies</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('artist','folder'); return false;">Folder</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('artist','patchwork'); return false;">Patchwork</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('artist','toothpick'); return false;">Toothpick</a><span>(1)</span></li>
+    </ul>
+  </div>
 </div>
-        <div class="sidebar-section">
-  <div class="sidebar-title">Location</div>
-  <ul class="sidebar-list">
-    <li><a href="#" onclick="filterArticles('location','dallas'); return false;">Dallas</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('location','fort-worth'); return false;">Fort Worth</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('location','italy'); return false;">Italy</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('location','texas'); return false;">Texas</a><span>(2)</span></li>
-  </ul>
-</div>
-        <div class="sidebar-section">
-  <div class="sidebar-title">Artists</div>
-  <ul class="sidebar-list">
-    <li><a href="#" onclick="filterArticles('artist','dead-butterflies'); return false;">Dead Butterflies</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('artist','folder'); return false;">Folder</a><span>(1)</span></li>
-    <li><a href="#" onclick="filterArticles('artist','toothpick'); return false;">Toothpick</a><span>(1)</span></li>
-  </ul>
-</div>
-      </div>
 
     </div>
     <footer>© 2026 Significant Other</footer>
@@ -1379,22 +1383,26 @@ function toggleMobileFilter(id) {
 
   // Human-readable display names for each filter value
   var filterLabels = {
-    'alternative-metal': 'Alternative Metal',
-    'electronic':        'Electronic',
-    'emo':               'Emo',
-    'industrial-rock':   'Industrial Rock',
-    'nu-metal':          'Nu Metal',
-    'rap-metal':         'Rap Metal',
-    'screamo':           'Screamo',
-    'skramz':            'Skramz',
-    'dallas':            'Dallas',
-    'fort-worth':        'Fort Worth',
-    'italy':             'Italy',
-    'texas':             'Texas',
-    'dead-butterflies':  'Dead Butterflies',
-    'folder':            'Folder',
-    'toothpick':         'Toothpick'
-  };
+  'alternative-metal': 'Alternative Metal',
+  'electronic':        'Electronic',
+  'emo':               'Emo',
+  'industrial-rock':   'Industrial Rock',
+  'metalcore':         'Metalcore',
+  'nu-metal':          'Nu Metal',
+  'post-hardcore':     'Post-Hardcore',
+  'rap-metal':         'Rap Metal',
+  'screamo':           'Screamo',
+  'skramz':            'Skramz',
+  'dallas':            'Dallas',
+  'fort-worth':        'Fort Worth',
+  'houston':           'Houston',
+  'italy':             'Italy',
+  'texas':             'Texas',
+  'dead-butterflies':  'Dead Butterflies',
+  'folder':            'Folder',
+  'patchwork':         'Patchwork',
+  'toothpick':         'Toothpick'
+};
 
   // Map filter category names to the data attributes on the cards
   var attrMap = {
