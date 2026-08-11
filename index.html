@@ -798,35 +798,58 @@
 <div class="homepage-grid">
   <div class="no-results" id="no-results">No articles match this filter.</div>
 
-  <!-- FEATURED: Toothpick (NEWEST) -->
+  <!-- FEATURED: A Brief Memoir (NEW) -->
   <div class="featured-article"
-    data-genres="post-hardcore metalcore emo"
-    data-locations="houston texas"
-    data-artists="patchwork">
-    <img src="toothpick.jpg" alt="Toothpick Band Photo" class="featured-image"/>
+    data-genres="slowcore emo"
+    data-locations="denton texas"
+    data-artists="a-brief-memoir">
+    <img src="A Brief Memoir Album Artwork.jpg" alt="A Brief Memoir album art" class="featured-image"/>
     <div class="featured-body">
-      <div class="featured-date">June 1, 2026</div>
-      <div class="featured-title">Toothpick on Their New EP, Their Future, and Video Games</div>
+      <div class="featured-date">August 11, 2026</div>
+      <div class="featured-title">A Brief Memoir - Self-Titled</div>
       <div class="featured-tags">
-        <span class="tag">Interview</span>
-          <span class="tag">Alternative Metal</span>
-          <span class="tag">Nu Metal</span>
-          <span class="tag">Industrial Rock</span>
-          <span class="tag">Dallas</span>
-          <span class="tag">Texas</span>
+        <span class="tag">Review</span>
+        <span class="tag">Slowcore</span>
+        <span class="tag">Emo</span>
+        <span class="tag">Denton</span>
+        <span class="tag">Texas</span>
       </div>
       <div class="featured-preview">
-                  An interview with Dallas machine rock band Toothpick.
+        A little article about A Brief Memoir's beuatiful self-titled debut album
       </div>
-      <span class="read-more-btn" onclick="openArticle('toothpick-interview')">Read Full Article</span>
+      <span class="read-more-btn" onclick="openArticle('a-brief-memoir-review')">Read Full Article</span>
     </div>
   </div>
 
   <!-- SIDE ARTICLES -->
   <div class="side-articles">
 
-    <!-- Toothpick (moved from featured) -->
-  
+    <!-- Toothpick (moved down from featured) -->
+    <div class="side-article" id="side-toothpick"
+      data-genres="alternative-metal nu-metal industrial-rock"
+      data-locations="dallas texas"
+      data-artists="toothpick">
+      <img src="toothpick.jpg" alt="Toothpick band photo" class="side-image"/>
+      <div class="side-body">
+        <div class="side-date">April 17, 2026</div>
+        <div class="side-title">Toothpick on Their New EP, Their Future, and Video Games</div>
+        <div class="side-tags">
+          <span class="tag">Interview</span>
+          <span class="tag">Alternative Metal</span>
+          <span class="tag">Nu Metal</span>
+          <span class="tag">Industrial Rock</span>
+          <span class="tag">Dallas</span>
+          <span class="tag">Texas</span>
+        </div>
+        <div class="side-preview">
+          An interview with Dallas machine rock band Toothpick.
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <span class="read-more-btn" onclick="openArticle('toothpick-interview')">Read Full Article</span>
+          <span class="side-toggle" onclick="toggleSide('side-toothpick')">+</span>
+        </div>
+      </div>
+    </div>
 
     <!-- Dead Butterflies -->
     <div class="side-article" id="side-0"
@@ -851,7 +874,7 @@
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
           <span class="read-more-btn" onclick="openArticle('dead-butterflies-review')">Read Full Article</span>
-          <span class="side-toggle" onclick="toggleSide('side-1')">+</span>
+          <span class="side-toggle" onclick="toggleSide('side-0')">+</span>
         </div>
       </div>
     </div>
@@ -876,11 +899,10 @@
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
           <span class="read-more-btn" onclick="openArticle('folder-review')">Read Full Article</span>
-          <span class="side-toggle" onclick="toggleSide('side-2')">+</span>
+          <span class="side-toggle" onclick="toggleSide('side-1')">+</span>
         </div>
       </div>
     </div>
-
   </div>
 </div>
       </div>
@@ -895,16 +917,17 @@
       <li><a href="#" onclick="filterArticles('genre','emo'); return false;">Emo</a><span>(2)</span></li>
       <li><a href="#" onclick="filterArticles('genre','industrial-rock'); return false;">Industrial Rock</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('genre','nu-metal'); return false;">Nu Metal</a><span>(2)</span></li>
-      <li><a href="#" onclick="filterArticles('genre','post-hardcore'); return false;">Post-Hardcore</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('genre','rap-metal'); return false;">Rap Metal</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('genre','screamo'); return false;">Screamo</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('genre','skramz'); return false;">Skramz</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('genre','slowcore'); return false;">Slowcore</a><span>(1)</span></li>
     </ul>
   </div>
   <div class="sidebar-section">
     <div class="sidebar-title">Location</div>
     <ul class="sidebar-list">
       <li><a href="#" onclick="filterArticles('location','dallas'); return false;">Dallas</a><span>(1)</span></li>
+      <li><a href="#" onclick="filterArticles('location','denton'); return false;">Denton</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('location','fort-worth'); return false;">Fort Worth</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('location','italy'); return false;">Italy</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('location','texas'); return false;">Texas</a><span>(3)</span></li>
@@ -913,6 +936,7 @@
   <div class="sidebar-section">
     <div class="sidebar-title">Artists</div>
     <ul class="sidebar-list">
+      <li><a href="#" onclick="filterArticles('artist','a-brief-memoir'); return false;">A Brief Memoir</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('artist','dead-butterflies'); return false;">Dead Butterflies</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('artist','folder'); return false;">Folder</a><span>(1)</span></li>
       <li><a href="#" onclick="filterArticles('artist','toothpick'); return false;">Toothpick</a><span>(1)</span></li>
@@ -923,130 +947,30 @@
     </div>
     <footer>© 2026 Significant Other</footer>
   </div>
-      <!-- ==================== FULL ARTICLE: PATCHWORK ==================== -->
-<div class="full-article-page" id="page-patchwork-interview">
+      
+  <!-- ==================== FULL ARTICLE: A BRIEF MEMOIR ==================== -->
+<div class="full-article-page" id="page-a-brief-memoir-review">
   <span class="back-btn" onclick="goHome()">Back to all articles</span>
-  <img src="Patchwork the last time stopping bullet....jpg" alt="the last time stopping bullet..." class="full-article-hero"/>
-  <div class="full-article-date">June 1, 2026</div>
-  <h1 class="full-article-title">Patchwork and the last time stopping bullet...</h1>
+  <img src="A Brief Memoir Album Artwork.jpg" alt="A Brief Memoir album art" class="full-article-hero"/>
+  <div class="full-article-date">August 11, 2026</div>
+  <h1 class="full-article-title">A Brief Memoir - Self-Titled</h1>
   <div class="full-article-tags">
-    <span class="tag">Interview</span>
-    <span class="tag">Post-Hardcore</span>
-    <span class="tag">Metalcore</span>
+    <span class="tag">Review</span>
+    <span class="tag">Slowcore</span>
     <span class="tag">Emo</span>
-    <span class="tag">Houston</span>
+    <span class="tag">Denton</span>
     <span class="tag">Texas</span>
   </div>
   <div class="full-article-body">
-    <p>Patchwork is a post-hardcore band of young goats from Houston who have elevated themselves to one of my most listened to artists this year. I saw them live over a month ago in Bryan, Texas of all places, and their set completely blew me away and has turned into the most memorable shows I've seen in that town, if I'm being completely honest. They just completely altered the vibe and moods of everyone around them by commanding their attention and giving them something amazing to witness in what I would just consider as unfiltered post-hardcore catharsis. Believe me when I say that after their first song I turned to my friends and gave them a kind of "wow" face of disbelief, which I think sums up the experience way more than if I actually tried to get technical and explain their performance.</p>
+    <p>It's been many, many moons since I've last written anything for this blog. Not because I forgot about it, but because I've been trying to figure out what else I can do with it to make it even cooler while allowing me to create more for music and artists I love. Hopefully I can figure it out, but that's not the point of this article.</p>
 
-    <p>Coincidentally, this was also the very same day that their debut album, <em>the last time stopping bullet…</em>, released on all streaming platforms. This is an album I genuinely haven't been able to stop listening to ever since it dropped. Obviously I'm not the master of music or know everything there is to know about every genre in the world so this is my opinion, but for me I think this is one of the most meaningful post-hardcore releases that I've listened to in the past years. Side note, it is worth noting that while I mostly call this a post-hardcore album, <em>the last time stopping bullet…</em> balances the melodic post-hardcore instrumentals and amazing clean vocals with some metalcore riffs, breakdowns, and violent screaming.</p>
+    <p>This article is about the amazing album that brought me out of my hiatus: Denton, Texas band A Brief Memoir's self-titled album, <em>A Brief Memoir.</em> I'm only just writing about this album now, but I've been listening to it ever since it came out earlier this summer and have had plans for this post on my mind for a while now, so I hope I can do it some justice.</p>
 
-    <p>The album wastes no time at all getting you addicted to it with its opening track Unconditionally and Irrevocably in Love, which immediately thrusts you into an explosive, melodic chorus that is nothing short of beautiful and awesome. Immediately following is my personal favorite song off the album: Eden. This song is just so insanely awesome and I'll just let you measure that based on the fact that every time I listen to it I need to start it all over again at least five times before I can finally move on. I just absolutely love the way the intro sets up something you'd expect to be a little faster, then almost fakes you out and transitions into something much slower than you'd expect - which happens to be my favorite part of the song. I don't want to do the album a disservice by not talking about every other amazing track, but just trust me when I say this album is unskippable. Just a final shoutout to the tracks Angelica and Strawberry Jam for being some other of my favorites.</p>
+    <p>Released on June 12, 2026, <em>A Brief Memoir</em> is the self-titled debut album from the band (I was pretty shocked when I went back to make sure it was released in June just because it seemed so long ago). A Brief Memoir have released a handful of singles and an EP over the last five or so years, with their album being their first release since 2023. I think it's a tad different from the band's previous work, because it clearly has a greater focus on clean vocals as opposed to additional screamo elements. In this difference, though, <em>A Brief Memoir</em> sounds like their first release, a 3 song demo, so maybe it's gone full circle for their style. While I love my fair share of screamo, the soft, cleaner moments of this album is something that I think really sets this apart into something really beautiful.</p>
 
-    <p>Essentially, if you love post-hardcore, metalcore, emo, or whatever similar genre, then you should definitely listen to this album. It's been a while since I liked an entire album this wholeheartedly and I can see it being my personal album of the year. Furthermore, I can also definitely see this band growing to become very popular, even one of the more popular bands from the greater Texas scene. In any case, they have a bright future ahead of them.</p>
+    <p>This is the album that I wanted to write about after months of not doing anything because I think it reflects this pivotal and defining time of my life, maybe more than any other piece of music has resonated with me before. I know that I don't necessarily relate to every experience that each song is initially made about, but I think the album does a good job at letting you interpret their meaning and lyrics for your own life - one of the best things about art is how you can view it through your own lens to relate to it, after all. For me, I think something specific A Brief Memoir does is bottle up the special kind of sorrow and grief that comes with unavoidable changes we experience throughout the course of our lives - even for experiences that might not have fully happened yet.</p>
 
-    <p>There's more to this article…I reached out to the band to talk about themselves and their music, and luckily I was able to talk with some of the members. Please enjoy my short conversation with these young goats:</p>
-
-    <p><em>Missing from the interview are band members Isa (Vocals/Guitar) and Aaries (Guitar)</em></p>
-
-    <p><strong>What are y'all's names and the roles you have in the band?</strong><br/>
-    <strong>Maynor:</strong> My name is Maynor and I do vocals.<br/>
-    <strong>Draven:</strong> My name is Draven and I play the drums.<br/>
-    <strong>Jack:</strong> I'm Jack and I play bass.</p>
-
-    <p><strong>How does it feel like now that you guys have had your album out for a little over a month now?</strong><br/>
-    <strong>Maynor:</strong> I didn't even know it was over a month. It's really nice, I've been listening to it a lot in school. I listen to it everyday, actually.<br/>
-    <strong>Jack:</strong> It doesn't feel like it's been out for a month yet. But all the positive feedback, it really makes us smile.</p>
-
-    <p><strong>Yeah, how does it feel putting your own full-length album out for the world to hear?</strong><br/>
-    <strong>Draven:</strong> Awesome, having people listen to the stuff that you create is a really nice feeling. Also how they actually enjoy it and really like it, it makes us proud of ourselves and motivates us to keep going.<br/>
-    <strong>Jack:</strong> Yeah, I think it's definitely special. I don't think there's anything that can really replicate it</p>
-
-    <p><strong>What was it like spending time in the studio and recording everything?</strong><br/>
-    <strong>Maynor:</strong> There was a lot going on. When we started we didn't have enough time because drums took a couple hours.<br/>
-    <strong>Draven:</strong> Hey that was twelve songs right there.<br/>
-    <strong>Maynor:</strong> It was definitely a lot, but really worth it.<br/>
-    <strong>Jack:</strong> Yeah, I had to record it all separately because I couldn't make it that day either, but I think it was a good experience.</p>
-
-    <p><strong>What's the creative process like for you guys? How do you go about writing a song?</strong><br/>
-    <strong>Maynor:</strong> Usually it's Aaries who writes a lot of the songs. I guess Isa meets up with Aaries and they just work on songs together.<br/>
-    <strong>Jack:</strong> They'll make guitar parts and vocal parts and then the rest of us just kind of add on to it and make it complete.<br/>
-    <strong>Draven:</strong> Yeah, they'll usually get the songs started and stuff.</p>
-
-    <p><strong>And Maynor, do you write your own lyrics for the parts that you sing?</strong><br/>
-    <strong>Maynor:</strong> Yeah, I do. I wasn't in the band when the band first started, and when I joined I wrote five of the new songs, so there's six older songs on there. Usually I write all of my stuff, I've been writing a lot of stuff lately.</p>
-
-    <p><strong>So which were the songs you wrote?</strong><br/>
-    <strong>Maynor:</strong> I wrote Angelica, Pyres of Retribution, my heart beloved to you, A Cheerleader's Monologue, and Enlightenment.</p>
-
-    <p><strong>This is gonna sound super stupid, but is Five Nights named after Five Nights at Freddy's?</strong><br/>
-    <strong>Jack:</strong> It is. And I was the one who named it, too. Isa had no idea what to name it, so I was like, "You should just name it Five Nights."<br/>
-    <strong>Draven:</strong> She wanted to name it something something "Ballet", but Jack was like, "Just name it Five Nights."<br/>
-    <strong>Jack:</strong> Bro, the lyrics already kinda pointed to it anyways.<br/>
-    <strong>Draven:</strong> It was also Halloween around that time, and we did a Halloween show where we all dressed up as FNAF characters so it kind of just came.<br/>
-    <strong>Jack:</strong> I think it's a great name.</p>
-
-    <p><strong>It is a great name and it's a great song. So how did the band start off?</strong><br/>
-    <strong>Jack:</strong> Even before the band started me and Aaries were in this project that we didn't really take too seriously at the time because some of the members just weren't clicking for us, so we were asking around. We met Isa at this School of Rock show, actually, and we were like, "You wanna join our band?" and she was like, "I'll get back to you on that," but it ended up that we joined her band, and she got Draven and Maynor.</p>
-
-    <p><strong>How do you think the Houston scene has inspired you as creatives?</strong><br/>
-    <strong>Maynor:</strong> There's a lot of good bands that are in the scene right now. Have you heard of a band called Disillusioned? That's my brother's band, they're really good. I like a lot of that type of stuff. They remind me hella of Poison the Well and stuff like that.</p>
-
-    <p><strong>So did you guys grow up going to shows?</strong><br/>
-    <strong>Draven:</strong> I did. I kind of don't really count it, but technically the first "show" in the scene that I went to was when I was six. My dad was performing. It was at this old venue called Walter's. It's not up anymore, but it was kind of equivalent to The End or White Swan. So I've been kinda just growing up going to shows and stuff, just being around a lot of music.<br/>
-    <strong>Maynor:</strong> I didn't actually grow up going to shows. My older brother actually introduced me to all this type of stuff. And he's sort of the reason why I'm doing what I'm doing now, you know? He started off doing vocals in, like, 2024, and I just thought it was the coolest stuff ever. There was a wave of deathcore going on at the time so I got hella into that and I was posting hella covers. Just a lot of that type of stuff influenced me into going to more shows and stuff like that.<br/>
-    <strong>Jack:</strong> For me it's a little different, because nobody else in my family is interested in music at all, but I got into the scene and I've been best friends with Aaries for a long time. We both went to School of Rock, and I'm not gonna lie we fell down the stereotypical "metal pipeline" where you're always looking for something heavier and you get the point where you have to find smaller bands, because stuff isn't mainstream and you realize you can go to shows and see these people for, like, five bucks. We were looking for deathcore and slam and stuff, and then we reverted back. But that's how it started.</p>
-
-    <p><strong>Are there any bands you wanna shout out?</strong><br/>
-    <strong>Everyone:</strong> Disillusioned.<br/>
-    <strong>Maynor:</strong> Crush, of course. They're really good.<br/>
-    <strong>Draven:</strong> Shoutout our eyes go blank tonight, too. Their drummer gives me tips and shit, shoutout to him.<br/>
-    <strong>Maynor:</strong> Victoria's Death Letter. They're so heavy.<br/>
-    <strong>Jack:</strong> One of my first "bigger shows" wasn't VDL headlining, but they were there and I was blown away. I'd been going to free shows for a while, but that was my first show at The End. We should shout out So Near, Yet Somehow Out Of Reach and April Left With Silence. And Blister. Riley's a big supporter of ours.</p>
-
-    <p><strong>When was y'alls first show?</strong><br/>
-    <strong>Draven:</strong> I would say our first show was at this place called Emmit's Place with My Callisto. It was an interesting lineup. We were softer and not as heavy as we are now. We definitely had a different sound back then. We were unknown at the time and had, like, 30 followers and no one knew who we were. It was kinda empty and we were all nervous and stuff, but it was alright.<br/>
-    <strong>Jack:</strong> I think the only song that survived that beginning era was Eden.<br/>
-    <strong>Draven:</strong> It was Eden and It Starts at Seeing</p>
-
-    <p><strong>So you guys have a lot of scrapped songs?</strong><br/>
-    <strong>Draven:</strong> There's a lot. There's one song that we only played at our first show and then we never played it again.</p>
-
-    <p><strong>I'm glad Eden survived because that's actually my favorite song. What are your guys' favorite songs off the album?</strong><br/>
-    <strong>Maynor:</strong> my heart beloved to you, of course. The last one.<br/>
-    <strong>Draven:</strong> This is a basic one but Unconditionally and Irrevocably in Love is one of my favorites. And Eden. Eden is my favorite to play live, to be honest.<br/>
-    <strong>Jack:</strong> Unconditionally and Irrevocably in Love - I put a lot of effort into the bass part for that song, so I enjoy that one, but I also really like It Starts at Seeing.</p>
-
-    <p><strong>What artists, big or small, have really influenced the kind of music you wanna make?</strong><br/>
-    <strong>Jack:</strong> Dance Gavin Dance is on there for Isa for sure. I think Pierce the Veil is mine. They're, like, my favorite band ever.<br/>
-    <strong>Draven:</strong> I'm really influenced by Twenty-One Pilots, specifically their drummer. I'm also really influenced by Bring Me the Horizon, and like Jack said Pierce the Veil, of course. Really creative bands.<br/>
-    <strong>Maynor:</strong> At the moment I've really been into Since My Beloved and stuff like that. But really Since My Beloved, that vocalist is insane, like seriously he is really, really good. His lyrics are really good.</p>
-
-    <p><strong>Thank you guys for sharing those. I think for a lot of people, even thinking of starting a band can be pretty stressful or scary, so how do you guys deal with the nervousness that comes with going on stage in front of people?</strong><br/>
-    <strong>Maynor:</strong> Just laugh it off.<br/>
-    <strong>Draven:</strong> I feel like we don't really get too nervous. I feel like Isa gets a little nervous, but at the same time she's able to shake it off and get into that mode.<br/>
-    <strong>Jack:</strong> To give advice though, I'd say laughing it off and just at the end of the day nobody expects perfection. Everybody's there for you and you're there to have fun.</p>
-
-    <p><strong>What would you say are your favorite video games?</strong><br/>
-    <strong>Draven:</strong> Super Smash Bros. definitely. Obviously Ultimate is number one, but Brawl is number two. People be hating on Brawl, but it was actually really good. It gets too much hate. Melee's good, too that's number three right there. Mortal Kombat as well, I've been playing a lot of Mortal Kombat.<br/>
-    <strong>Jack:</strong> I'm obsessed with the Monster Hunter series. I love Monster Hunter: World, it's the best game ever.<br/>
-    <strong>Maynor:</strong> I don't really play games like that. As much as I tried to get into games and stuff like that, it just kinda gives me a headache. I lowkey get overstimulated playing games.</p>
-
-    <p><strong>What's the best show you've ever been an audience member in?</strong><br/>
-    <strong>Maynor:</strong> Girl of Glass had a free tour kickoff August 1st at a venue called The Empire Room. It was so good, it was really violent. The energy was just there.<br/>
-    <strong>Draven:</strong> Man I've been to too many shows. There's two shows that stick out to me that I've been to. One was Garf Fest in 2024. It was so packed, there was barely any room to move but the crowd was going crazy. Another was this band called Orthodox. They played at The End. They had the lights on for some reason, and I've never seen The End with their house lights on. It was really crazy and it was really awesome to be there.<br/>
-    <strong>Jack:</strong> My favorite set I've ever seen was probably Fear of Loss at No Sleep Fest day 3. I don't think I've ever seen a more violent set. Shout out Pablo, Pablo has helped us so much.<br/>
-    <strong>Draven:</strong> He really has helped us a lot.</p>
-
-    <p><strong>Is there anything else you wanna share about the future of the band?</strong><br/>
-    <strong>Draven:</strong> Definitely expect some stuff later this year.<br/>
-    <strong>Maynor:</strong> Expect a whole other album because we're gonna make more music, Draven and Jack.</p>
-
-    <p><strong>Is there anything else you want to share?</strong><br/>
-    <strong>Maynor:</strong> Shoutout to Jordan from RFC. Shoutout Rose Flavored Cigarettes.<br/>
-    <strong>Jack:</strong> Shoutout everybody who's a friend and helps us, especially the merch running group.<br/>
-    <strong>Maynor:</strong> We fucking love y'all.</p>
+    <p>It's also the very slow, calm nature of the album that makes me think the grief captured here isn't necessarily from sudden new changes, but more so about the grief that comes slowly, the slow burn that can happen over months and years. It makes me think of the different stages of life that get further away from us, the people we haven't (or won't) see in ages and may not see ever again, the memories that grow more distant and get less vivid as time passes, even how we cherish and grieve something at the same time by knowing it will be gone in the future. If you know me, you might know why I would relate to these things so strongly at my new stage in life. The kind of introspection A Brief Memoir invites is something special that stirs unique feelings, and I hope that what I wrote about aligns with - or at least is somewhat related to - the themes the band intended to sow into these songs. I know the album is very specific in its experiences that aren't my own, but I'm glad I found something that perfectly encapsulates the cores of these specific emotions. It really reminds me about how personal music can be.</p>
   </div>
 </div>
 
